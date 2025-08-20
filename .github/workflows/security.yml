@@ -26,7 +26,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
     - name: Upload Gitleaks results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: failure()
       with:
         name: gitleaks-report
@@ -59,7 +59,7 @@ jobs:
         pip-audit --format=json --output=pip-audit-report.json || true
         
     - name: Upload vulnerability reports
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: dependency-vulnerability-reports
         path: |
@@ -98,7 +98,7 @@ jobs:
         severity-cutoff: high
         
     - name: Upload Grype results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: grype-vulnerability-report
         path: results.sarif
@@ -131,7 +131,7 @@ jobs:
         semgrep --config=auto --json --output=semgrep-report.json src/ || true
         
     - name: Upload security analysis reports
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: code-security-reports
         path: |
@@ -174,7 +174,7 @@ jobs:
           docker/docker-bench-security > docker-bench-results.txt || true
           
     - name: Upload Docker Bench results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: docker-bench-security-report
         path: docker-bench-results.txt
@@ -204,7 +204,7 @@ jobs:
         pip-licenses --format=csv --output-file=licenses-report.csv
         
     - name: Upload license reports
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: license-compliance-reports
         path: |
@@ -235,7 +235,7 @@ jobs:
         echo "Generated on: $(date)" >> security-summary.md
         
     - name: Upload security summary
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: security-summary
         path: security-summary.md
