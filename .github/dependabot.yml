@@ -1,0 +1,90 @@
+version: 2
+
+updates:
+  # Python dependencies
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "security-team"
+      - "devops-team"
+    assignees:
+      - "maintainer-team"
+    labels:
+      - "dependencies"
+      - "python"
+    commit-message:
+      prefix: "deps"
+      prefix-development: "deps-dev"
+    ignore:
+      # Ignore major version updates for stable dependencies
+      - dependency-name: "google-generativeai"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "openai"
+        update-types: ["version-update:semver-major"]
+    groups:
+      # Group AI/ML related dependencies
+      ai-dependencies:
+        patterns:
+          - "google-generativeai"
+          - "openai"
+          - "tavily-python"
+      # Group testing dependencies
+      testing-dependencies:
+        patterns:
+          - "pytest*"
+          - "coverage"
+          - "mock"
+      # Group development tools
+      dev-tools:
+        patterns:
+          - "black"
+          - "flake8"
+          - "mypy"
+          - "bandit"
+
+  # Docker dependencies
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "tuesday"
+      time: "09:00"
+    reviewers:
+      - "devops-team"
+      - "security-team"
+    labels:
+      - "dependencies"
+      - "docker"
+    commit-message:
+      prefix: "docker"
+
+  # GitHub Actions dependencies
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+      time: "09:00"
+    reviewers:
+      - "devops-team"
+    labels:
+      - "dependencies"
+      - "github-actions"
+    commit-message:
+      prefix: "actions"
+
+  # Terraform dependencies (if we add terraform later)
+  # - package-ecosystem: "terraform"
+  #   directory: "/infrastructure"
+  #   schedule:
+  #     interval: "weekly"
+  #   reviewers:
+  #     - "devops-team"
+  #   labels:
+  #     - "dependencies"
+  #     - "terraform" 

@@ -1,0 +1,44 @@
+# Global owners - These users will be requested for review on all PRs
+* @maintainer-team
+
+# Core source code
+/src/ @core-team @maintainer-team
+
+# Configuration and settings
+/src/config/ @devops-team @security-team
+/deployment/ @devops-team @security-team
+
+# Security-sensitive areas
+/src/core/llm_service.py @security-team @core-team
+/src/core/search_service.py @security-team @core-team
+/.github/workflows/security.yml @security-team
+
+# MLOps and monitoring
+/mlops/ @mlops-team @data-science-team
+/llmops/ @mlops-team @ai-team
+/src/utils/monitoring.py @devops-team @mlops-team
+/src/utils/validation.py @data-science-team @ai-team
+
+# Infrastructure and deployment
+/docker-compose.yml @devops-team
+/Dockerfile @devops-team @security-team
+/deployment/prometheus.yml @devops-team
+/deployment/nginx.conf @devops-team @security-team
+
+# GitHub workflows and CI/CD
+/.github/workflows/ @devops-team @maintainer-team
+
+# Documentation
+/README.md @docs-team @maintainer-team
+/LEARNING_PATH.md @docs-team @education-team
+/docs/ @docs-team
+
+# Testing
+/tests/ @qa-team @core-team
+
+# Dependencies and security
+/requirements.txt @security-team @devops-team
+/.github/dependabot.yml @security-team @devops-team
+
+# Legal and compliance
+/LICENSE @legal-team @maintainer-team 
